@@ -9,40 +9,43 @@ class Main {
 
   // List of variables used in this program
   public static int numberOfRolls;
-  public static int maxPins;
+  public static int maxPins = 10;
   public static int numberOfPins;
+  //public static int strikeBonus;
+  public static int score;
   // List of scanners
   public static Scanner input = new Scanner(System.in);
-  
 
   // Method that prompts the user to enter in the scores from one frame
 
   public static void myFrame() {
-    //System.out.println("How many rolls did you have in frame 1?");
+    int[] frame1 = new int[2];
     System.out.println("");
-    //numberOfRolls = input.nextInt();
-    int[] frame1 = new int[numberOfRolls];
-    System.out.println("");
-    if (numberOfRolls > 3) {
-      System.out.println("Number of rolls cannot exceed 3 per frame. Try again!");
-    } else {
-      for (int counter = 0; counter < numberOfRolls; counter++) {
-        System.out.println("Please enter the number of pins knocked down in roll " + (counter + 1));
-        numberOfPins = input.nextInt();
-        frame1[counter] = numberOfPins;
-        if(numberOfPins > 10){
-          System.out.println("Invalid number of pins! Number cannot exceed 10! Try again!");
+    for (int counter = 0; counter < frame1.length; counter++) {
+      System.out.println("Please enter the number of pins knocked down in roll " + (counter + 1));
+      numberOfPins = input.nextInt();
+      frame1[counter] = numberOfPins;
+      if (numberOfPins > 10) {
+        System.out.println("Invalid number of pins! Number cannot exceed 10! Try again!");
+      } else if (numberOfPins == maxPins) { // calculation of spare and strike
+       // for (int counter2 = 0; counter2 < frame1.length; counter2++) {
+          System.out.println("Please enter the number of pins knocked down in bonus roll " + (counter + 1));
+          strikeBonus = input.nextInt();
+          frame1[counter2] = strikeBonus;
+          score = 10 + score + frame1[counter2];
         }
-          
+      } else {
+        score = score + frame1[counter];
       }
     }
 
-    input.close();
+    // input.close();
 
     System.out.println("Your score for frame 1 is");
-    for (int counter = 0; counter < numberOfRolls; counter++) {
-      System.out.println(frame1[counter]);
-    }
+    // for(int counter = 0; counter<numberOfRolls;counter++)
+    // {
+    System.out.println(score);
+    // }
 
   }
 
@@ -58,4 +61,4 @@ class Main {
 
 // To-Do List
 // Create second input for number of pins knocked down
-// 
+//
